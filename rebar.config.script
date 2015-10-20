@@ -5,13 +5,14 @@ Cfg = case file:consult("vars.config") of
               Terms;
           _Err ->
               []
-      end ++ [{cflags, ""}, {ldflags, ""}],
+      end ++ [{cflags, " -O2 -Wall"}, {ldflags, " -lssl -lcrypto"}, {with_gcov, "false"}],
 {cflags, CfgCFlags} = lists:keyfind(cflags, 1, Cfg),
 {ldflags, CfgLDFlags} = lists:keyfind(ldflags, 1, Cfg),
+{with_gcov, CfgWithGCov} = lists:keyfind(with_gcov, 1, Cfg),
 
 [{erl_opts, [debug_info]},
- {port_env, [{"CFLAGS", "$CFLAGS " ++ CfgCFlags ++ " -O2 -Wall"},
-             {"LDFLAGS", "$LDFLAGS " ++ CfgLDFlags ++ " -lssl -lcrypto"}]},
+ {port_env, [{"CFLAGS", "$CFLAGS "},
+             {"LDFLAGS", "$LDFLAGS "}]},
  {port_specs, [{"priv/lib/p1_tls_drv.so", ["c_src/p1_tls_drv.c"]},
                {"priv/lib/p1_sha.so", ["c_src/p1_sha.c"]}]}].
 
