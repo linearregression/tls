@@ -83,3 +83,4 @@ all: p1_sha p1_tls_drv
 
 clean:
 	@rm -f $(C_SRC_OUTPUT) $(OBJECTS)
+	@rm -rf $(C_SRC_OUTPUT_DIR)
