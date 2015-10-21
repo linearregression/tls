@@ -1,0 +1,7 @@
+{nodes, ['gen_rpc_tls_master@127.0.0.1', 'gen_rpc_tls_slave@127.0.0.1']}.
+{level, details}.
+{incl_mods, [
+    gen_rpc_tls_app,
+    gen_rpc_tls_sup
+]}.
+
